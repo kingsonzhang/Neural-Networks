@@ -5,10 +5,11 @@ Shape: (60000 images, 28 pixels by 28 pixels)
 
 Relu: Rectified Linear Unit
 Sigmoid
-softmax: probability distribution between 0-9 essentially
+softmax: probability distribution between 0-output size essentially
 
 adam: Adpative Moment Estimation, essentially adaptive changes the gradient
 sparse_categorical_crossentropy: Multiclassification
+binary_crossentropy
 
 Loss: Another name for cost function, lower the better, trending downward ideal
 
@@ -17,3 +18,7 @@ Broadcasting: Matching the shape of the matrices
 
 
 Chapter 4 Notes
+Accuracy: The higher the better
+Validation Accuracy: Should stay about the same. If it trends lower or stabilizes, means it's overfitting
+
+Multihot-Encode: Padding the data
