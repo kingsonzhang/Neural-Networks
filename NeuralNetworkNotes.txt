@@ -4,6 +4,7 @@ Import MNIST is importing all of the handwritten digits
 Shape: (60000 images, 28 pixels by 28 pixels)
 
 Relu: Rectified Linear Unit
+Sigmoid
 softmax: probability distribution between 0-9 essentially
 
 adam: Adpative Moment Estimation, essentially adaptive changes the gradient
@@ -12,3 +13,7 @@ sparse_categorical_crossentropy: Multiclassification
 Loss: Another name for cost function, lower the better, trending downward ideal
 
 Broadcasting: Matching the shape of the matrices
+
+
+
+Chapter 4 Notes

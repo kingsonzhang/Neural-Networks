@@ -132,14 +132,27 @@ def backward_propagate_error(network, expected):
 
 # Update network weights with error
 def update_weights(network, row, l_rate):
-	for i in range(len(network)):
-		inputs = row[:-1]
-		if i != 0:
-			inputs = [neuron['output'] for neuron in network[i - 1]]
-		for neuron in network[i]:
-			for j in range(len(inputs)):
-				neuron['weights'][j] += l_rate * neuron['delta'] * inputs[j]
-			neuron['weights'][-1] += l_rate * neuron['delta']
+    # Loop starts at i=1 (first hidden layer), skipping the input layer (i=0)
+    for i in range(1, len(network)):
+        layer = network[i]
+        
+        # Determine inputs:
+        if i == 1:
+            # Inputs for the first hidden layer (i=1) are the data features
+            inputs = row[:-1]
+        else:
+            # Inputs for subsequent layers (i > 1) are the outputs of the previous layer (i-1)
+            inputs = [neuron['output'] for neuron in network[i - 1]]
+            
+        # Update weights for each neuron
+        for neuron in layer:
+            # Update weights for input connections
+            for j in range(len(inputs)):
+                # Weight update rule: W = W + l_rate * delta * input
+                neuron['weights'][j] += l_rate * neuron['delta'] * inputs[j]
+            
+            # Update the bias (last weight)
+            neuron['weights'][-1] += l_rate * neuron['delta']
 
 # Train a network for a fixed number of epochs
 def train_network(network, train, l_rate, n_epoch, n_outputs):
@@ -175,10 +188,10 @@ def predict(network, row):
 	return outputs.index(max(outputs))
 
 # Backpropagation Algorithm With Stochastic Gradient Descent
-def back_propagation(train, test, l_rate, n_epoch, n_hidden_layers):
+def back_propagation(train, test, l_rate, n_epoch, n_hidden):
     n_inputs = len(train[0]) - 1
     n_outputs = len(set([row[-1] for row in train]))
-    network = initialize_network(n_inputs, n_hidden_layers, n_outputs)
+    network = initialize_network(n_inputs, n_hidden, n_outputs)
     train_network(network, train, l_rate, n_epoch, n_outputs)
     predictions = list()
     for row in test:
@@ -199,10 +212,63 @@ str_column_to_int(dataset, len(dataset[0])-1)
 minmax = dataset_minmax(dataset)
 normalize_dataset(dataset, minmax)
 # evaluate algorithm
+n_folds = 10
+l_rate = 0.3
+n_epoch = 250
+n_hidden = [50, 25, 10, 5]
+scores = evaluate_algorithm(dataset, back_propagation, n_folds, l_rate, n_epoch, n_hidden)
+print('Scores: %s' % scores)
+print('Mean Accuracy: %.3f%%' % (sum(scores)/float(len(scores))))
+
+"""
+Default State
 n_folds = 5
 l_rate = 0.3
 n_epoch = 500
 n_hidden = [5]
-scores = evaluate_algorithm(dataset, back_propagation, n_folds, l_rate, n_epoch, n_hidden)
-print('Scores: %s' % scores)
-print('Mean Accuracy: %.3f%%' % (sum(scores)/float(len(scores))))
+Scores: [95.23809523809523, 92.85714285714286, 97.61904761904762, 92.85714285714286, 90.47619047619048]
+Mean Accuracy: 93.810%
+"""
+
+"""
+n_folds = 5
+l_rate = 0.1
+n_epoch = 500
+n_hidden = [5]
+Scores: [92.85714285714286, 90.47619047619048, 97.61904761904762, 92.85714285714286, 88.09523809523809]
+Mean Accuracy: 92.381%
+"""
+
+
+
+"""
+3 Layers Default State
+n_folds = 5
+l_rate = 0.3
+n_epoch = 500
+n_hidden = [50, 25, 10]
+Scores: [30.952380952380953, 26.190476190476193, 35.714285714285715, 30.952380952380953, 33.33333333333333]
+Mean Accuracy: 31.429%
+"""
+
+
+
+"""
+4 Layers Default State
+n_folds = 5
+l_rate = 0.3
+n_epoch = 500
+n_hidden = [50, 25, 10, 5]
+Scores: [30.952380952380953, 26.190476190476193, 35.714285714285715, 30.952380952380953, 33.33333333333333]
+Mean Accuracy: 31.429%
+"""
+
+"""
+4 Layers Smaller Learning Rate
+n_folds = 5
+l_rate = 0.1
+n_epoch = 500
+n_hidden = [50, 25, 10, 5]
+Scores: [30.952380952380953, 26.190476190476193, 35.714285714285715, 30.952380952380953, 33.33333333333333]
+Mean Accuracy: 31.429%
+"""
