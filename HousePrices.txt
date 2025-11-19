@@ -1,0 +1,2 @@
+I didn't change many configurations in this example. I was mostly just curious about how the data of the house prices would be changed for the input layer.
+The input data was adjusted by using a standard deviation curve and the standard deviation for each house price.

@@ -1,0 +1,11 @@
+For the Movie Review assignment, I specifically wanted to test out why the author stated the network started overfitting at certain epochs.
+
+model.fit(x_train, y_train, epochs=4, batch_size=512)
+[Loss, Accuracy] = [0.3136918544769287, 0.8787599802017212]
+
+Trying out Epochs 3 and 5
+model.fit(x_train, y_train, epochs=3, batch_size=512)
+[Loss, Accuracy] = [0.3128149211406708, 0.8783199787139893]
+
+model.fit(x_train, y_train, epochs=5, batch_size=512)
+[Loss, Accuracy] = [0.34830352663993835, 0.8733599781990051]

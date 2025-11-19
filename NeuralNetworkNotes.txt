@@ -3,9 +3,9 @@ Chapter 2 Notes
 Import MNIST is importing all of the handwritten digits
 Shape: (60000 images, 28 pixels by 28 pixels)
 
-Relu: Rectified Linear Unit
-Sigmoid
-softmax: probability distribution between 0-output size essentially
+Relu: Rectified Linear Unit. Positive means output is same as input. Negative means set to 0
+Sigmoid: Compress outputs to a value between -1 and 1
+softmax: probability distribution for all of the outputs that sum up to 1. Highest probability is considered the output
 
 adam: Adpative Moment Estimation, essentially adaptive changes the gradient
 sparse_categorical_crossentropy: Multiclassification

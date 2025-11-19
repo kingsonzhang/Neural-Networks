@@ -1,0 +1,21 @@
+I initially tried to install Anaconda and setup the virtual environment, but I had trouble getting Anaconda to work. Instead, I completely dropped Anaconda and created a virtual environment.
+Since I dropped Anaconda, I had to download the correct version of python to work with tensorflow, python3.12. Once that version of python is installed, I created the virtual environment.
+The code for the virtual environment is as follows:
+
+python -m venv venv
+Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope Process
+./venv/Scripts/activate
+
+Once the virtual environment has been created, called venv going forward, a few python packages have to installed:
+
+pip install notebook
+pip install keras
+pip install tensorflow
+
+With those installed, I can create a requirements.txt for the repository.
+
+pip freeze > requirements.txt
+
+Once this has all been setup, I created a github repository and pushed all the files, adding a final gitignore for the venv directory.
+
+The purpose of the setup was to get used to learning about Neural Networks, and to test that with the classic example of digit recognition. The python notebook included ran through the basics of setting up and training the neural network to recognize the handwritten digits downloaded from MNIST.

@@ -1,0 +1,18 @@
+The Newswires one I was curious about what happens when the network is compressed from the a large input size to a smaller input size.
+The author gave an example of what happens when 46 is compressed down to 4. I was interested in whether or not the location of the compression in the neural network made a difference. It generally does not. Just the compression down to smaller amount of nodes lowers the accuracy.
+
+model = keras.Sequential(
+    [
+        layers.Dense(4, activation="relu"),
+        layers.Dense(64, activation="relu"),
+        layers.Dense(46, activation="softmax"),
+    ]
+)
+
+model = keras.Sequential(
+    [
+        layers.Dense(64, activation="relu"),
+        layers.Dense(4, activation="relu"),
+        layers.Dense(46, activation="softmax"),
+    ]
+)
