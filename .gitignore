@@ -1,2 +1,8 @@
 # Virtual Environment
 venv/
+
+# Cats and Dogs Data
+train/
+test/
+dogs_vs_cats_small/
+cats_and_dogs_small/

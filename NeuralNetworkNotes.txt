@@ -22,3 +22,32 @@ Accuracy: The higher the better
 Validation Accuracy: Should stay about the same. If it trends lower or stabilizes, means it's overfitting
 
 Multihot-Encode: Padding the data
+
+
+
+
+Chapter 5 Notes
+
+Convolution vs Cross Correlation: CNN are technically Cross Correlation, but it won't matter in the end since the values are changing
+
+Translation Invariance: Cat is the same in both bottom right and top left of a picture
+Spatial Heiarchical: Things are based on simple shapes first and then at deeper levels the shapes create more complex objects
+
+Padding: Pad the borders of the input to allow for convolution
+Valid: Do not pad
+Same: Pad so output is same dimension as input
+
+Kernel: The small matrix used for the convolution. Values will be altered with backpropagation
+
+Pooling: Compressing a matrix down into a smaller dataset
+Max Pooling: Better used for imagery. Slides overs matrixes with a certain size smaller matrix (stride), and only stores the max number found in that smaller matrix
+Average Pooling: Averages the numbers in the smaller matrix instead of max number
+
+Data Augmentation: Tranform the image slightly to yield essentially infinite data
+
+Dropout Layer: In a certain layer, randomly deactivate specific neurons from activating. Prevents 1 single neuron affecting the entire network
+
+Pretrained Model: Keep the backbone convolutional base, but retrain the densely connected classifier
+
+Fine Tuning: Must first train the new densely connected classifier or custom part added by freezing the convolutional base.
+Only after the custom part is trained can the convolutional base be unfrozen and the whole network fine tuned.
